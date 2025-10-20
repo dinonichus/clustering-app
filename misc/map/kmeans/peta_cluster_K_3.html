@@ -1,0 +1,1349 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+    <script src="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.js"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.2.0/css/all.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/python-visualization/folium/folium/templates/leaflet.awesome.rotate.min.css"/>
+    
+            <meta name="viewport" content="width=device-width,
+                initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+            <style>
+                #map_af1441e75c941727d8772bf72831a85c {
+                    position: relative;
+                    width: 100.0%;
+                    height: 100.0%;
+                    left: 0.0%;
+                    top: 0.0%;
+                }
+                .leaflet-container { font-size: 1rem; }
+            </style>
+
+            <style>html, body {
+                width: 100%;
+                height: 100%;
+                margin: 0;
+                padding: 0;
+            }
+            </style>
+
+            <style>#map {
+                position:absolute;
+                top:0;
+                bottom:0;
+                right:0;
+                left:0;
+                }
+            </style>
+
+            <script>
+                L_NO_TOUCH = false;
+                L_DISABLE_3D = false;
+            </script>
+
+        
+</head>
+<body>
+    
+    
+            <div class="folium-map" id="map_af1441e75c941727d8772bf72831a85c" ></div>
+        
+</body>
+<script>
+    
+    
+            var map_af1441e75c941727d8772bf72831a85c = L.map(
+                "map_af1441e75c941727d8772bf72831a85c",
+                {
+                    center: [-4.0, 130.0],
+                    crs: L.CRS.EPSG3857,
+                    ...{
+  "zoom": 5,
+  "zoomControl": true,
+  "preferCanvas": false,
+}
+
+                }
+            );
+
+            
+
+        
+    
+            var tile_layer_a7dc078d3b0fb43528ad9d1434e14822 = L.tileLayer(
+                "https://tile.openstreetmap.org/{z}/{x}/{y}.png",
+                {
+  "minZoom": 0,
+  "maxZoom": 19,
+  "maxNativeZoom": 19,
+  "noWrap": false,
+  "attribution": "\u0026copy; \u003ca href=\"https://www.openstreetmap.org/copyright\"\u003eOpenStreetMap\u003c/a\u003e contributors",
+  "subdomains": "abc",
+  "detectRetina": false,
+  "tms": false,
+  "opacity": 1,
+}
+
+            );
+        
+    
+            tile_layer_a7dc078d3b0fb43528ad9d1434e14822.addTo(map_af1441e75c941727d8772bf72831a85c);
+        
+    
+            var marker_f9a76874d59835b9efcc45b43c803036 = L.marker(
+                [-5.3912, 120.2559],
+                {
+}
+            ).addTo(map_af1441e75c941727d8772bf72831a85c);
+        
+    
+            var icon_06b0dc258c227fd4c4b8e3c7802d888f = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "blue",
+  "iconColor": "white",
+  "icon": "info-sign",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_06a5960979241752b446299fdeaa59da = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_d067f161c31881129a30b639780d05b4 = $(`<div id="html_d067f161c31881129a30b639780d05b4" style="width: 100.0%; height: 100.0%;">             <b>Kab. Bulukumba</b><br>             Cluster: <b>0</b>         </div>`)[0];
+                popup_06a5960979241752b446299fdeaa59da.setContent(html_d067f161c31881129a30b639780d05b4);
+            
+        
+
+        marker_f9a76874d59835b9efcc45b43c803036.bindPopup(popup_06a5960979241752b446299fdeaa59da)
+        ;
+
+        
+    
+    
+            marker_f9a76874d59835b9efcc45b43c803036.bindTooltip(
+                `<div>
+                     Kab. Bulukumba
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_f9a76874d59835b9efcc45b43c803036.setIcon(icon_06b0dc258c227fd4c4b8e3c7802d888f);
+            
+    
+            var marker_9df7205236ea421b92496a5b2f06745d = L.marker(
+                [-8.65, 116.53],
+                {
+}
+            ).addTo(map_af1441e75c941727d8772bf72831a85c);
+        
+    
+            var icon_cd8175805edb8f2ab02ae70d89cb6bd0 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "blue",
+  "iconColor": "white",
+  "icon": "info-sign",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_180b7018b74a855eacf772e24023620b = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_70f81095642b51b88d1d2088b0ab56e0 = $(`<div id="html_70f81095642b51b88d1d2088b0ab56e0" style="width: 100.0%; height: 100.0%;">             <b>Kab. Lombok Timur</b><br>             Cluster: <b>0</b>         </div>`)[0];
+                popup_180b7018b74a855eacf772e24023620b.setContent(html_70f81095642b51b88d1d2088b0ab56e0);
+            
+        
+
+        marker_9df7205236ea421b92496a5b2f06745d.bindPopup(popup_180b7018b74a855eacf772e24023620b)
+        ;
+
+        
+    
+    
+            marker_9df7205236ea421b92496a5b2f06745d.bindTooltip(
+                `<div>
+                     Kab. Lombok Timur
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_9df7205236ea421b92496a5b2f06745d.setIcon(icon_cd8175805edb8f2ab02ae70d89cb6bd0);
+            
+    
+            var marker_304917d5a93d28c1ab084117c90f3bd0 = L.marker(
+                [-3.551, 119.0069],
+                {
+}
+            ).addTo(map_af1441e75c941727d8772bf72831a85c);
+        
+    
+            var icon_6671a8fbfc63faac2a7d417a9693a5bf = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "blue",
+  "iconColor": "white",
+  "icon": "info-sign",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_5db4405d2aac78373acdbacc70037cf3 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_7d6a2458004b78fa1705fa189aeab682 = $(`<div id="html_7d6a2458004b78fa1705fa189aeab682" style="width: 100.0%; height: 100.0%;">             <b>Kab. Majene</b><br>             Cluster: <b>0</b>         </div>`)[0];
+                popup_5db4405d2aac78373acdbacc70037cf3.setContent(html_7d6a2458004b78fa1705fa189aeab682);
+            
+        
+
+        marker_304917d5a93d28c1ab084117c90f3bd0.bindPopup(popup_5db4405d2aac78373acdbacc70037cf3)
+        ;
+
+        
+    
+    
+            marker_304917d5a93d28c1ab084117c90f3bd0.bindTooltip(
+                `<div>
+                     Kab. Majene
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_304917d5a93d28c1ab084117c90f3bd0.setIcon(icon_6671a8fbfc63faac2a7d417a9693a5bf);
+            
+    
+            var marker_7a99d21568d1f8bfd58558ef7bb95841 = L.marker(
+                [-0.8616, 134.0622],
+                {
+}
+            ).addTo(map_af1441e75c941727d8772bf72831a85c);
+        
+    
+            var icon_83a8a2667a8e93d8e1fe0fa038551181 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "green",
+  "iconColor": "white",
+  "icon": "info-sign",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_cc4ba7414eb02aa83bf96d2f8589c913 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_c9178d55de822328c069b429dd4c5a2e = $(`<div id="html_c9178d55de822328c069b429dd4c5a2e" style="width: 100.0%; height: 100.0%;">             <b>Kab. Manokwari</b><br>             Cluster: <b>1</b>         </div>`)[0];
+                popup_cc4ba7414eb02aa83bf96d2f8589c913.setContent(html_c9178d55de822328c069b429dd4c5a2e);
+            
+        
+
+        marker_7a99d21568d1f8bfd58558ef7bb95841.bindPopup(popup_cc4ba7414eb02aa83bf96d2f8589c913)
+        ;
+
+        
+    
+    
+            marker_7a99d21568d1f8bfd58558ef7bb95841.bindTooltip(
+                `<div>
+                     Kab. Manokwari
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_7a99d21568d1f8bfd58558ef7bb95841.setIcon(icon_83a8a2667a8e93d8e1fe0fa038551181);
+            
+    
+            var marker_2b8ca2725548b93f5bab8806baf6b4cc = L.marker(
+                [-8.4716, 140.3807],
+                {
+}
+            ).addTo(map_af1441e75c941727d8772bf72831a85c);
+        
+    
+            var icon_5fc951d7c28b0e23099629ba63717c4e = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "green",
+  "iconColor": "white",
+  "icon": "info-sign",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_5410558912f61cd8d063925912ef64a4 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_d912115c7b85df01f0e5bae4cc4653e2 = $(`<div id="html_d912115c7b85df01f0e5bae4cc4653e2" style="width: 100.0%; height: 100.0%;">             <b>Kab. Merauke</b><br>             Cluster: <b>1</b>         </div>`)[0];
+                popup_5410558912f61cd8d063925912ef64a4.setContent(html_d912115c7b85df01f0e5bae4cc4653e2);
+            
+        
+
+        marker_2b8ca2725548b93f5bab8806baf6b4cc.bindPopup(popup_5410558912f61cd8d063925912ef64a4)
+        ;
+
+        
+    
+    
+            marker_2b8ca2725548b93f5bab8806baf6b4cc.bindTooltip(
+                `<div>
+                     Kab. Merauke
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_2b8ca2725548b93f5bab8806baf6b4cc.setIcon(icon_5fc951d7c28b0e23099629ba63717c4e);
+            
+    
+            var marker_e5674fc453a1644f44dbe93143f13e79 = L.marker(
+                [-3.4285, 119.3491],
+                {
+}
+            ).addTo(map_af1441e75c941727d8772bf72831a85c);
+        
+    
+            var icon_3616a139852f94dbb9fe577cf2a2b24a = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "blue",
+  "iconColor": "white",
+  "icon": "info-sign",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_64f549a7f5eb5a3283feeb8e5d54eff4 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_2a60a656a7a6cbd7c7ef99323628e56b = $(`<div id="html_2a60a656a7a6cbd7c7ef99323628e56b" style="width: 100.0%; height: 100.0%;">             <b>Kab. Polewali Mandar</b><br>             Cluster: <b>0</b>         </div>`)[0];
+                popup_64f549a7f5eb5a3283feeb8e5d54eff4.setContent(html_2a60a656a7a6cbd7c7ef99323628e56b);
+            
+        
+
+        marker_e5674fc453a1644f44dbe93143f13e79.bindPopup(popup_64f549a7f5eb5a3283feeb8e5d54eff4)
+        ;
+
+        
+    
+    
+            marker_e5674fc453a1644f44dbe93143f13e79.bindTooltip(
+                `<div>
+                     Kab. Polewali Mandar
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_e5674fc453a1644f44dbe93143f13e79.setIcon(icon_3616a139852f94dbb9fe577cf2a2b24a);
+            
+    
+            var marker_1f3596cd788ae6efd50485ad7fe61c88 = L.marker(
+                [-8.5833, 117.3333],
+                {
+}
+            ).addTo(map_af1441e75c941727d8772bf72831a85c);
+        
+    
+            var icon_37b52b969b66b805d82d78394acb64ba = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "blue",
+  "iconColor": "white",
+  "icon": "info-sign",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_6eba4e7cb5285a7e6a4add19eebf0f75 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_65e5739ee1a95fd9cd179e7875dad588 = $(`<div id="html_65e5739ee1a95fd9cd179e7875dad588" style="width: 100.0%; height: 100.0%;">             <b>Kab. Sumbawa</b><br>             Cluster: <b>0</b>         </div>`)[0];
+                popup_6eba4e7cb5285a7e6a4add19eebf0f75.setContent(html_65e5739ee1a95fd9cd179e7875dad588);
+            
+        
+
+        marker_1f3596cd788ae6efd50485ad7fe61c88.bindPopup(popup_6eba4e7cb5285a7e6a4add19eebf0f75)
+        ;
+
+        
+    
+    
+            marker_1f3596cd788ae6efd50485ad7fe61c88.bindTooltip(
+                `<div>
+                     Kab. Sumbawa
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_1f3596cd788ae6efd50485ad7fe61c88.setIcon(icon_37b52b969b66b805d82d78394acb64ba);
+            
+    
+            var marker_9485759d952a1036d982270172789d2b = L.marker(
+                [-5.462, 122.6288],
+                {
+}
+            ).addTo(map_af1441e75c941727d8772bf72831a85c);
+        
+    
+            var icon_8600447e61d40c38944ad7e239ec05ac = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "red",
+  "iconColor": "white",
+  "icon": "info-sign",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_bf974def8e2dfe3b7542dc805bcbc1c3 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_dbe6ca66a8d0d5388977bf63184ca897 = $(`<div id="html_dbe6ca66a8d0d5388977bf63184ca897" style="width: 100.0%; height: 100.0%;">             <b>Kota Bau-Bau</b><br>             Cluster: <b>2</b>         </div>`)[0];
+                popup_bf974def8e2dfe3b7542dc805bcbc1c3.setContent(html_dbe6ca66a8d0d5388977bf63184ca897);
+            
+        
+
+        marker_9485759d952a1036d982270172789d2b.bindPopup(popup_bf974def8e2dfe3b7542dc805bcbc1c3)
+        ;
+
+        
+    
+    
+            marker_9485759d952a1036d982270172789d2b.bindTooltip(
+                `<div>
+                     Kota Bau-Bau
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_9485759d952a1036d982270172789d2b.setIcon(icon_8600447e61d40c38944ad7e239ec05ac);
+            
+    
+            var marker_df9f5b871e9f84d2b32a5705260e4ff5 = L.marker(
+                [-8.477, 118.73],
+                {
+}
+            ).addTo(map_af1441e75c941727d8772bf72831a85c);
+        
+    
+            var icon_1afcd359f2e31473442ca6c79466960a = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "blue",
+  "iconColor": "white",
+  "icon": "info-sign",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_5ee1e06dde851135b0183464dac656a6 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_3d2381ac633539d824a2c360dbe78f40 = $(`<div id="html_3d2381ac633539d824a2c360dbe78f40" style="width: 100.0%; height: 100.0%;">             <b>Kota Bima</b><br>             Cluster: <b>0</b>         </div>`)[0];
+                popup_5ee1e06dde851135b0183464dac656a6.setContent(html_3d2381ac633539d824a2c360dbe78f40);
+            
+        
+
+        marker_df9f5b871e9f84d2b32a5705260e4ff5.bindPopup(popup_5ee1e06dde851135b0183464dac656a6)
+        ;
+
+        
+    
+    
+            marker_df9f5b871e9f84d2b32a5705260e4ff5.bindTooltip(
+                `<div>
+                     Kota Bima
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_df9f5b871e9f84d2b32a5705260e4ff5.setIcon(icon_1afcd359f2e31473442ca6c79466960a);
+            
+    
+            var marker_0b744d1f32d646221fd22a225d6d6b26 = L.marker(
+                [-8.6556, 115.2162],
+                {
+}
+            ).addTo(map_af1441e75c941727d8772bf72831a85c);
+        
+    
+            var icon_8b5a07f24012058936718a35884ce7c4 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "blue",
+  "iconColor": "white",
+  "icon": "info-sign",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_8f81d1cd7b4748f85ed7f5a0c9910fd4 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_0e4b97d1b8a385b2537511790f23ea02 = $(`<div id="html_0e4b97d1b8a385b2537511790f23ea02" style="width: 100.0%; height: 100.0%;">             <b>Kota Denpasar</b><br>             Cluster: <b>0</b>         </div>`)[0];
+                popup_8f81d1cd7b4748f85ed7f5a0c9910fd4.setContent(html_0e4b97d1b8a385b2537511790f23ea02);
+            
+        
+
+        marker_0b744d1f32d646221fd22a225d6d6b26.bindPopup(popup_8f81d1cd7b4748f85ed7f5a0c9910fd4)
+        ;
+
+        
+    
+    
+            marker_0b744d1f32d646221fd22a225d6d6b26.bindTooltip(
+                `<div>
+                     Kota Denpasar
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_0b744d1f32d646221fd22a225d6d6b26.setIcon(icon_8b5a07f24012058936718a35884ce7c4);
+            
+    
+            var marker_1037f1b1caff0e72b42aa3b4396e2844 = L.marker(
+                [0.5369, 123.0592],
+                {
+}
+            ).addTo(map_af1441e75c941727d8772bf72831a85c);
+        
+    
+            var icon_cfd145f6457cb8bed01866943f9694b4 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "red",
+  "iconColor": "white",
+  "icon": "info-sign",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_f28e07f3068f6a5f3ea16d71441920e1 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_cc2421b55ba01007eb28ae1662f7614d = $(`<div id="html_cc2421b55ba01007eb28ae1662f7614d" style="width: 100.0%; height: 100.0%;">             <b>Kota Gorontalo</b><br>             Cluster: <b>2</b>         </div>`)[0];
+                popup_f28e07f3068f6a5f3ea16d71441920e1.setContent(html_cc2421b55ba01007eb28ae1662f7614d);
+            
+        
+
+        marker_1037f1b1caff0e72b42aa3b4396e2844.bindPopup(popup_f28e07f3068f6a5f3ea16d71441920e1)
+        ;
+
+        
+    
+    
+            marker_1037f1b1caff0e72b42aa3b4396e2844.bindTooltip(
+                `<div>
+                     Kota Gorontalo
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_1037f1b1caff0e72b42aa3b4396e2844.setIcon(icon_cfd145f6457cb8bed01866943f9694b4);
+            
+    
+            var marker_c3cb804c635637e92aab5cff27c69393 = L.marker(
+                [-2.5333, 140.7],
+                {
+}
+            ).addTo(map_af1441e75c941727d8772bf72831a85c);
+        
+    
+            var icon_e489d7bc18df68a4d6bfaae865f61ac9 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "green",
+  "iconColor": "white",
+  "icon": "info-sign",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_c9dd39038d49ae9062e8301f23139bd8 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_b5ce783a72d87a022ff64933c001d1e9 = $(`<div id="html_b5ce783a72d87a022ff64933c001d1e9" style="width: 100.0%; height: 100.0%;">             <b>Kota Jayapura</b><br>             Cluster: <b>1</b>         </div>`)[0];
+                popup_c9dd39038d49ae9062e8301f23139bd8.setContent(html_b5ce783a72d87a022ff64933c001d1e9);
+            
+        
+
+        marker_c3cb804c635637e92aab5cff27c69393.bindPopup(popup_c9dd39038d49ae9062e8301f23139bd8)
+        ;
+
+        
+    
+    
+            marker_c3cb804c635637e92aab5cff27c69393.bindTooltip(
+                `<div>
+                     Kota Jayapura
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_c3cb804c635637e92aab5cff27c69393.setIcon(icon_e489d7bc18df68a4d6bfaae865f61ac9);
+            
+    
+            var marker_6cfc96360c2416fe965b047e2ec5393f = L.marker(
+                [-3.9859, 122.5165],
+                {
+}
+            ).addTo(map_af1441e75c941727d8772bf72831a85c);
+        
+    
+            var icon_80863739a77b915c3d590313708dbc57 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "red",
+  "iconColor": "white",
+  "icon": "info-sign",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_1080f0d874a1e0dd86134b7eb64882b8 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_dcee717e43e86a0bedef14f2f7bcc775 = $(`<div id="html_dcee717e43e86a0bedef14f2f7bcc775" style="width: 100.0%; height: 100.0%;">             <b>Kota Kendari</b><br>             Cluster: <b>2</b>         </div>`)[0];
+                popup_1080f0d874a1e0dd86134b7eb64882b8.setContent(html_dcee717e43e86a0bedef14f2f7bcc775);
+            
+        
+
+        marker_6cfc96360c2416fe965b047e2ec5393f.bindPopup(popup_1080f0d874a1e0dd86134b7eb64882b8)
+        ;
+
+        
+    
+    
+            marker_6cfc96360c2416fe965b047e2ec5393f.bindTooltip(
+                `<div>
+                     Kota Kendari
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_6cfc96360c2416fe965b047e2ec5393f.setIcon(icon_80863739a77b915c3d590313708dbc57);
+            
+    
+            var marker_f77a50a9968d4654639e1160c9dbb003 = L.marker(
+                [-10.1702, 123.5707],
+                {
+}
+            ).addTo(map_af1441e75c941727d8772bf72831a85c);
+        
+    
+            var icon_20e54195d75eaba80ac0ee4ca36a8257 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "red",
+  "iconColor": "white",
+  "icon": "info-sign",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_f97c6a33c5125c4eac254ae3bdafa6b7 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_483ce1424ea0c6169cfa256206dcd98f = $(`<div id="html_483ce1424ea0c6169cfa256206dcd98f" style="width: 100.0%; height: 100.0%;">             <b>Kota Kupang</b><br>             Cluster: <b>2</b>         </div>`)[0];
+                popup_f97c6a33c5125c4eac254ae3bdafa6b7.setContent(html_483ce1424ea0c6169cfa256206dcd98f);
+            
+        
+
+        marker_f77a50a9968d4654639e1160c9dbb003.bindPopup(popup_f97c6a33c5125c4eac254ae3bdafa6b7)
+        ;
+
+        
+    
+    
+            marker_f77a50a9968d4654639e1160c9dbb003.bindTooltip(
+                `<div>
+                     Kota Kupang
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_f77a50a9968d4654639e1160c9dbb003.setIcon(icon_20e54195d75eaba80ac0ee4ca36a8257);
+            
+    
+            var marker_793066414be80d1f54a96466db6cafdd = L.marker(
+                [-5.1477, 119.4327],
+                {
+}
+            ).addTo(map_af1441e75c941727d8772bf72831a85c);
+        
+    
+            var icon_76d3631a92f61f8b50fa3c0058b7a727 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "blue",
+  "iconColor": "white",
+  "icon": "info-sign",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_a1c8e906f713ebad5fecc6240f147585 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_3d2975b5acd7590d3270641933a6cab8 = $(`<div id="html_3d2975b5acd7590d3270641933a6cab8" style="width: 100.0%; height: 100.0%;">             <b>Kota Makassar</b><br>             Cluster: <b>0</b>         </div>`)[0];
+                popup_a1c8e906f713ebad5fecc6240f147585.setContent(html_3d2975b5acd7590d3270641933a6cab8);
+            
+        
+
+        marker_793066414be80d1f54a96466db6cafdd.bindPopup(popup_a1c8e906f713ebad5fecc6240f147585)
+        ;
+
+        
+    
+    
+            marker_793066414be80d1f54a96466db6cafdd.bindTooltip(
+                `<div>
+                     Kota Makassar
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_793066414be80d1f54a96466db6cafdd.setIcon(icon_76d3631a92f61f8b50fa3c0058b7a727);
+            
+    
+            var marker_e13df3d79193e54429e232c5ed9608a6 = L.marker(
+                [-2.68, 118.887],
+                {
+}
+            ).addTo(map_af1441e75c941727d8772bf72831a85c);
+        
+    
+            var icon_f5573af3edfc120020799216d7676e20 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "blue",
+  "iconColor": "white",
+  "icon": "info-sign",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_fab8e8e5640f95f9593717e55f9b8028 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_74fca96139955a0e0420489bc05fd46f = $(`<div id="html_74fca96139955a0e0420489bc05fd46f" style="width: 100.0%; height: 100.0%;">             <b>Kota Mamuju</b><br>             Cluster: <b>0</b>         </div>`)[0];
+                popup_fab8e8e5640f95f9593717e55f9b8028.setContent(html_74fca96139955a0e0420489bc05fd46f);
+            
+        
+
+        marker_e13df3d79193e54429e232c5ed9608a6.bindPopup(popup_fab8e8e5640f95f9593717e55f9b8028)
+        ;
+
+        
+    
+    
+            marker_e13df3d79193e54429e232c5ed9608a6.bindTooltip(
+                `<div>
+                     Kota Mamuju
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_e13df3d79193e54429e232c5ed9608a6.setIcon(icon_f5573af3edfc120020799216d7676e20);
+            
+    
+            var marker_dbb87aa3d68b3a081d4691a0be9fc122 = L.marker(
+                [-2.679, 118.887],
+                {
+}
+            ).addTo(map_af1441e75c941727d8772bf72831a85c);
+        
+    
+            var icon_f1f1ec0fa2b01597ff1c5460bfc4f166 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "blue",
+  "iconColor": "white",
+  "icon": "info-sign",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_1d766e7a1f99c94362cf01056e11c47e = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_e883fbd5ea7ab4f3d5e8f2aae71e9e37 = $(`<div id="html_e883fbd5ea7ab4f3d5e8f2aae71e9e37" style="width: 100.0%; height: 100.0%;">             <b>Kota Mamuju</b><br>             Cluster: <b>0</b>         </div>`)[0];
+                popup_1d766e7a1f99c94362cf01056e11c47e.setContent(html_e883fbd5ea7ab4f3d5e8f2aae71e9e37);
+            
+        
+
+        marker_dbb87aa3d68b3a081d4691a0be9fc122.bindPopup(popup_1d766e7a1f99c94362cf01056e11c47e)
+        ;
+
+        
+    
+    
+            marker_dbb87aa3d68b3a081d4691a0be9fc122.bindTooltip(
+                `<div>
+                     Kota Mamuju
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_dbb87aa3d68b3a081d4691a0be9fc122.setIcon(icon_f1f1ec0fa2b01597ff1c5460bfc4f166);
+            
+    
+            var marker_ef6f37e9452abac26bb613ab44e8a7ef = L.marker(
+                [1.4748, 124.8421],
+                {
+}
+            ).addTo(map_af1441e75c941727d8772bf72831a85c);
+        
+    
+            var icon_4c4a09f3006c8a1a71958288805326a5 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "blue",
+  "iconColor": "white",
+  "icon": "info-sign",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_4f0d4781604970e682dc56d5c271a51e = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_b3dfdc9cde98cfde29785ddfd4f6585c = $(`<div id="html_b3dfdc9cde98cfde29785ddfd4f6585c" style="width: 100.0%; height: 100.0%;">             <b>Kota Manado</b><br>             Cluster: <b>0</b>         </div>`)[0];
+                popup_4f0d4781604970e682dc56d5c271a51e.setContent(html_b3dfdc9cde98cfde29785ddfd4f6585c);
+            
+        
+
+        marker_ef6f37e9452abac26bb613ab44e8a7ef.bindPopup(popup_4f0d4781604970e682dc56d5c271a51e)
+        ;
+
+        
+    
+    
+            marker_ef6f37e9452abac26bb613ab44e8a7ef.bindTooltip(
+                `<div>
+                     Kota Manado
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_ef6f37e9452abac26bb613ab44e8a7ef.setIcon(icon_4c4a09f3006c8a1a71958288805326a5);
+            
+    
+            var marker_ccd9bd4006be9af4f7c323de595b3416 = L.marker(
+                [-8.5833, 116.1167],
+                {
+}
+            ).addTo(map_af1441e75c941727d8772bf72831a85c);
+        
+    
+            var icon_76aa1d96ed24bb67cb958f01e3321326 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "blue",
+  "iconColor": "white",
+  "icon": "info-sign",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_91372ac0b8fbb5cd93fe19a322202602 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_8ef58b6ecb6104ae85265cda51cdd50f = $(`<div id="html_8ef58b6ecb6104ae85265cda51cdd50f" style="width: 100.0%; height: 100.0%;">             <b>Kota Mataram</b><br>             Cluster: <b>0</b>         </div>`)[0];
+                popup_91372ac0b8fbb5cd93fe19a322202602.setContent(html_8ef58b6ecb6104ae85265cda51cdd50f);
+            
+        
+
+        marker_ccd9bd4006be9af4f7c323de595b3416.bindPopup(popup_91372ac0b8fbb5cd93fe19a322202602)
+        ;
+
+        
+    
+    
+            marker_ccd9bd4006be9af4f7c323de595b3416.bindTooltip(
+                `<div>
+                     Kota Mataram
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_ccd9bd4006be9af4f7c323de595b3416.setIcon(icon_76aa1d96ed24bb67cb958f01e3321326);
+            
+    
+            var marker_2109f7d9f1d975196d46200fa6baba45 = L.marker(
+                [-8.6186, 122.2158],
+                {
+}
+            ).addTo(map_af1441e75c941727d8772bf72831a85c);
+        
+    
+            var icon_03fd2330df54342f9b0757dbce3eaad6 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "red",
+  "iconColor": "white",
+  "icon": "info-sign",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_7a4902ec19c8b19abc491afb1371ec6e = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_e1e7a0f5b682a52fd9b79b72732de1fa = $(`<div id="html_e1e7a0f5b682a52fd9b79b72732de1fa" style="width: 100.0%; height: 100.0%;">             <b>Kota Maumere</b><br>             Cluster: <b>2</b>         </div>`)[0];
+                popup_7a4902ec19c8b19abc491afb1371ec6e.setContent(html_e1e7a0f5b682a52fd9b79b72732de1fa);
+            
+        
+
+        marker_2109f7d9f1d975196d46200fa6baba45.bindPopup(popup_7a4902ec19c8b19abc491afb1371ec6e)
+        ;
+
+        
+    
+    
+            marker_2109f7d9f1d975196d46200fa6baba45.bindTooltip(
+                `<div>
+                     Kota Maumere
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_2109f7d9f1d975196d46200fa6baba45.setIcon(icon_03fd2330df54342f9b0757dbce3eaad6);
+            
+    
+            var marker_ce054b051de8df50cde9057569337803 = L.marker(
+                [-2.999, 120.198],
+                {
+}
+            ).addTo(map_af1441e75c941727d8772bf72831a85c);
+        
+    
+            var icon_8e283a80be2bfd48f117d2fe3ee09d54 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "blue",
+  "iconColor": "white",
+  "icon": "info-sign",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_401c9d945e6516b4626d4ed8dd3ef499 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_5e151fce06cf665ddfb17c6963ffa4ff = $(`<div id="html_5e151fce06cf665ddfb17c6963ffa4ff" style="width: 100.0%; height: 100.0%;">             <b>Kota Palopo</b><br>             Cluster: <b>0</b>         </div>`)[0];
+                popup_401c9d945e6516b4626d4ed8dd3ef499.setContent(html_5e151fce06cf665ddfb17c6963ffa4ff);
+            
+        
+
+        marker_ce054b051de8df50cde9057569337803.bindPopup(popup_401c9d945e6516b4626d4ed8dd3ef499)
+        ;
+
+        
+    
+    
+            marker_ce054b051de8df50cde9057569337803.bindTooltip(
+                `<div>
+                     Kota Palopo
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_ce054b051de8df50cde9057569337803.setIcon(icon_8e283a80be2bfd48f117d2fe3ee09d54);
+            
+    
+            var marker_857c608ee53599af8c7bc8485ccc8eb8 = L.marker(
+                [-0.8988, 119.8655],
+                {
+}
+            ).addTo(map_af1441e75c941727d8772bf72831a85c);
+        
+    
+            var icon_7efa596021353ee41be62ff0cc501adc = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "red",
+  "iconColor": "white",
+  "icon": "info-sign",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_16ba8d79b01f454e008f145ccf0bd9fc = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_1d232cf23ba6df1b68448d2ed4975c76 = $(`<div id="html_1d232cf23ba6df1b68448d2ed4975c76" style="width: 100.0%; height: 100.0%;">             <b>Kota Palu</b><br>             Cluster: <b>2</b>         </div>`)[0];
+                popup_16ba8d79b01f454e008f145ccf0bd9fc.setContent(html_1d232cf23ba6df1b68448d2ed4975c76);
+            
+        
+
+        marker_857c608ee53599af8c7bc8485ccc8eb8.bindPopup(popup_16ba8d79b01f454e008f145ccf0bd9fc)
+        ;
+
+        
+    
+    
+            marker_857c608ee53599af8c7bc8485ccc8eb8.bindTooltip(
+                `<div>
+                     Kota Palu
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_857c608ee53599af8c7bc8485ccc8eb8.setIcon(icon_7efa596021353ee41be62ff0cc501adc);
+            
+    
+            var marker_99b0d21f4b7361b674000f1dfcb2dce3 = L.marker(
+                [-4.018, 119.63],
+                {
+}
+            ).addTo(map_af1441e75c941727d8772bf72831a85c);
+        
+    
+            var icon_31e4f827fc3960e0236718669e3cb5ce = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "blue",
+  "iconColor": "white",
+  "icon": "info-sign",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_da5bca692bf5fea7de7fcfd9b3c2eb63 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_3d95399519a10cad7e4bb943123d0370 = $(`<div id="html_3d95399519a10cad7e4bb943123d0370" style="width: 100.0%; height: 100.0%;">             <b>Kota Parepare</b><br>             Cluster: <b>0</b>         </div>`)[0];
+                popup_da5bca692bf5fea7de7fcfd9b3c2eb63.setContent(html_3d95399519a10cad7e4bb943123d0370);
+            
+        
+
+        marker_99b0d21f4b7361b674000f1dfcb2dce3.bindPopup(popup_da5bca692bf5fea7de7fcfd9b3c2eb63)
+        ;
+
+        
+    
+    
+            marker_99b0d21f4b7361b674000f1dfcb2dce3.bindTooltip(
+                `<div>
+                     Kota Parepare
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_99b0d21f4b7361b674000f1dfcb2dce3.setIcon(icon_31e4f827fc3960e0236718669e3cb5ce);
+            
+    
+            var marker_d94b8ba6b30c7544297bb12c7654439e = L.marker(
+                [-8.113, 115.086],
+                {
+}
+            ).addTo(map_af1441e75c941727d8772bf72831a85c);
+        
+    
+            var icon_4778212a5a2f45dcdd30792491a71c51 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "blue",
+  "iconColor": "white",
+  "icon": "info-sign",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_3642f97f239fa0ee34a6043513a709a5 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_5a0fed86add66275f8ff1a48acaba8ac = $(`<div id="html_5a0fed86add66275f8ff1a48acaba8ac" style="width: 100.0%; height: 100.0%;">             <b>Kota Singaraja</b><br>             Cluster: <b>0</b>         </div>`)[0];
+                popup_3642f97f239fa0ee34a6043513a709a5.setContent(html_5a0fed86add66275f8ff1a48acaba8ac);
+            
+        
+
+        marker_d94b8ba6b30c7544297bb12c7654439e.bindPopup(popup_3642f97f239fa0ee34a6043513a709a5)
+        ;
+
+        
+    
+    
+            marker_d94b8ba6b30c7544297bb12c7654439e.bindTooltip(
+                `<div>
+                     Kota Singaraja
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_d94b8ba6b30c7544297bb12c7654439e.setIcon(icon_4778212a5a2f45dcdd30792491a71c51);
+            
+    
+            var marker_ab884301913e8dc200304785948c5160 = L.marker(
+                [-0.8803, 131.2588],
+                {
+}
+            ).addTo(map_af1441e75c941727d8772bf72831a85c);
+        
+    
+            var icon_cd81d1b499ca7540920f601981bc2beb = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "green",
+  "iconColor": "white",
+  "icon": "info-sign",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_7147456f41f2e1a685ae233523e3c097 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_512cd48a2cb5d85338cf07c7590e578f = $(`<div id="html_512cd48a2cb5d85338cf07c7590e578f" style="width: 100.0%; height: 100.0%;">             <b>Kota Sorong</b><br>             Cluster: <b>1</b>         </div>`)[0];
+                popup_7147456f41f2e1a685ae233523e3c097.setContent(html_512cd48a2cb5d85338cf07c7590e578f);
+            
+        
+
+        marker_ab884301913e8dc200304785948c5160.bindPopup(popup_7147456f41f2e1a685ae233523e3c097)
+        ;
+
+        
+    
+    
+            marker_ab884301913e8dc200304785948c5160.bindTooltip(
+                `<div>
+                     Kota Sorong
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_ab884301913e8dc200304785948c5160.setIcon(icon_cd81d1b499ca7540920f601981bc2beb);
+            
+    
+            var marker_2acb3a0ce5038ef65b5ddc23b88983aa = L.marker(
+                [-4.5387, 120.325],
+                {
+}
+            ).addTo(map_af1441e75c941727d8772bf72831a85c);
+        
+    
+            var icon_12036ffe7eccec9834ab5084ee1d4e43 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "blue",
+  "iconColor": "white",
+  "icon": "info-sign",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_e2b26c811ead6781eebcd56e9dc7067b = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_a5a07c3d57f179af9a76d1bb05eb9276 = $(`<div id="html_a5a07c3d57f179af9a76d1bb05eb9276" style="width: 100.0%; height: 100.0%;">             <b>Kota Watampone</b><br>             Cluster: <b>0</b>         </div>`)[0];
+                popup_e2b26c811ead6781eebcd56e9dc7067b.setContent(html_a5a07c3d57f179af9a76d1bb05eb9276);
+            
+        
+
+        marker_2acb3a0ce5038ef65b5ddc23b88983aa.bindPopup(popup_e2b26c811ead6781eebcd56e9dc7067b)
+        ;
+
+        
+    
+    
+            marker_2acb3a0ce5038ef65b5ddc23b88983aa.bindTooltip(
+                `<div>
+                     Kota Watampone
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_2acb3a0ce5038ef65b5ddc23b88983aa.setIcon(icon_12036ffe7eccec9834ab5084ee1d4e43);
+            
+</script>
+</html>
