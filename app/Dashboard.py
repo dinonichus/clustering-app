@@ -37,14 +37,14 @@ READY_FILE_PATH = '../dataset/mentah/semua_komoditas.xlsx'
 @st.cache_data
 def dbscan_test(df):
     # X = df.drop("Kabupaten/Kota", axis=1)
-    # st.write(X.head())
     X = data_scaling(df)
+    # st.write(X)
 
     k = 2
-    neigh = NearestNeighbors(n_neighbors=k + 1) 
+    neigh = NearestNeighbors(n_neighbors=k) 
     distances = neigh.fit(X).kneighbors()[0]
 
-    k_distances = distances[:, k]
+    k_distances = distances[:, k-1]
     k_distances = np.sort(k_distances, axis=0)
 
     kneedle = KneeLocator(
@@ -59,11 +59,11 @@ def dbscan_test(df):
     eps_recommend = round(eps_recommend, 2)
     # st.write(f"### Rekomendasi Epsilon Otomatis: **{eps_recommend}**")
 
-    if eps_recommend - 5 < 0:
+    if eps_recommend - 3 < 0:
         start_eps = 0.05
     else:
-        start_eps = eps_recommend - 5
-    end_eps = eps_recommend + 5
+        start_eps = eps_recommend - 3
+    end_eps = eps_recommend + 3
 
     param_grid = {
         "eps": np.arange(start_eps, end_eps, 0.05),
@@ -103,13 +103,13 @@ def dbscan_test(df):
                 "runtime_sec": runtime
             })
 
-    # --- HASIL EKSPERIMEN ---
+    # HASIL EKSPERIMEN
     results_df = pd.DataFrame(results)
     results_df = results_df.sort_values(by=["silhouette", "n_noise", "dbi"], ascending=[False, True, True])
     print("### Hasil Eksperimen DBSCAN (Top 10) ###")
     print(results_df.head(1))
 
-    # --- PARAMETER TERBAIK ---
+    # PARAMETER TERBAIK
     best_params = results_df.iloc[0]
     best_eps = best_params["eps"]
     best_min_pts = int(best_params["min_pts"])
@@ -155,7 +155,7 @@ def kmeans_test(df):
     results_df = pd.DataFrame(results)
     best_params = results_df.iloc[0]
 
-    print("BEST PARAM KMEANS-----------------------", best_params)
+    # print("BEST PARAM KMEANS-----------------------", best_params)
     return best_params
     
 
@@ -174,7 +174,7 @@ def kmeans_clustering(df, n_clusters):
     sil, dbi = evaluation(X, labels)
     runtime = time.time() - start
     
-    return df_cluster, model, sil, dbi, runtime
+    return df_cluster, sil, dbi, runtime
 
 
 @st.cache_data
@@ -205,7 +205,8 @@ def dbscan_clustering(df, eps, min_pts):
     df_cluster['Cluster'] = labels
 
     print("DBSCAN: ", sil, dbi)
-    return df_cluster, model, sil, dbi, runtime
+    return df_cluster, sil, dbi, runtime
+
 
 @st.cache_data
 def evaluation(X, labels):
@@ -229,7 +230,7 @@ def display_test(df_kmeans, df_dbscan):
     else:
         dbscan_winner = "🏆 "
 
-    col_kmeans, _, col_dbscan = st.columns([1, 0.2, 1])
+    col_kmeans, col_dbscan = st.columns([1, 1])
 
     with col_kmeans:
         st.subheader(kmeans_winner + "K-MEANS CLUSTERING")
@@ -237,7 +238,7 @@ def display_test(df_kmeans, df_dbscan):
         st.metric("Davies-Bouldin Index", f"{df_kmeans['dbi']:.4f}")
         st.metric("Runtime", f"{df_kmeans['runtime_sec']:.4f}s")
 
-        st.write(f"### **📈 Best Parameters**")
+        st.write(f"### **📈 Parameter Terbaik**")
         col1, col2, _ = st.columns([0.2, 0.2, 0.6])
         with col1:
             st.write(f"##### **n_clusters**")
@@ -260,7 +261,7 @@ def display_test(df_kmeans, df_dbscan):
                 st.metric("Number of clusters", f"{int(df_dbscan['n_clusters'])}")
                 st.metric("Number of noise points", f"{int(df_dbscan['n_noise'])}")
 
-            st.write(f"### **📈 Best Parameters**")
+            st.write(f"### **📈 Parameter Terbaik**")
             col1, col2, _ = st.columns([0.2, 0.2, 0.6])
             with col1:
                 st.write(f"##### **Epsilon**")
@@ -268,6 +269,10 @@ def display_test(df_kmeans, df_dbscan):
             with col2:
                 st.write(f"##### **: {df_dbscan['eps']:.2f}**")
                 st.write(f"##### **: {int(df_dbscan['min_pts'])}**")
+
+    st.info("Silhouette Score mendekati 1 menandakan anggota cluster sudah berada di cluster yang tepat.")
+    st.info("Davies-Bouldin Index mendekati 0 menandakan kerapatan jarak tiap anggota dalam cluster dan pemisahan yang jelas antar cluster.")
+
 
 
 def display_data(df):
@@ -286,6 +291,7 @@ def display_data(df):
 @st.cache_data
 def data_cleaning(df_input):
     df = df_input.copy()
+    # kekosongan sebanyak lebih dari 40%, kabupaten akan dihapus
     PERCENT_THRESHOLD = 0.4  
 
     column_name = df.columns[0]
@@ -293,7 +299,6 @@ def data_cleaning(df_input):
     df.rename(columns={column_name: new_column_name}, inplace=True)
 
     harga = df.columns[1:]
-
     df.loc[:, harga] = df[harga].replace({'-': np.nan, '': np.nan})
 
     for col in harga:
@@ -605,7 +610,7 @@ def visualize_cluster(df_result, df_month, sil, dbi, runtime, method_name):
 
     if len(all_komoditas) > 1:
         tabs_prefixes = ['ALL_KOMODITAS'] + all_komoditas
-        tabs_display = ['SEMUA KOMODITAS (RATA-RATA)'] + [p.replace('_', ' ').upper() for p in all_komoditas]
+        tabs_display = ['(RATA-RATA)'] + [p.replace('_', ' ').upper() for p in all_komoditas]
         
     else:
         tabs_prefixes = all_komoditas
@@ -863,7 +868,7 @@ def show_cluster_map(df_result, filename_path):
         avg_lon = df_merged["Longitude"].mean()
 
         m = folium.Map(
-            location=[avg_lat, avg_lon+5], 
+            location=[avg_lat, avg_lon+8], 
             zoom_start=5.2,
         )
 
@@ -1003,11 +1008,15 @@ def validate_uploaded_data(df_sheets):
     DATE_FORMAT = '%d/%m/%Y'
     datetime_types = (datetime, pd.Timestamp)
 
+    reference_periods = None 
+    first_sheet_name = None
+
     try:
         for sheet_name, df in df_sheets.items():
             if df.empty:
                 return False, f"Sheet '{sheet_name}' kosong, mohon isi datanya."
             
+            # dta harga kosong semua
             data_harga = df.iloc[:, 1:]
             if data_harga.isna().all().all():
                 raise Exception(f"Sheet '{sheet_name}' tampaknya **kosong** mulai dari kolom kedua. "
@@ -1017,6 +1026,41 @@ def validate_uploaded_data(df_sheets):
                 raise Exception(f"Sheet '{sheet_name}' tampaknya **kosong** atau hanya berisi spasi "
                                 f"mulai dari kolom kedua. Mohon masukkan data harga yang valid.")
                 
+            data_str = data_harga.astype(str)
+
+            data_str_cleaned = (
+                data_str
+                .replace(r'^\s*-\s*$', '', regex=True)  # ubah "-" jadi kosong
+                .replace({',': ''}, regex=False)
+                .replace(r'\s+', '', regex=True)        # hapus spasi berlebih
+            )
+
+            data_numeric_check = data_str_cleaned.apply(pd.to_numeric, errors='coerce')
+            # konversi gagal, jadi NaN
+            non_numeric_mask = data_numeric_check.isna() & (data_str_cleaned != '')
+
+            error_positions = []
+            for i, j in zip(*np.where(non_numeric_mask)):
+                val = data_str_cleaned.iloc[i, j]
+                # Abaikan nilai kosong atau NaN
+                if val in ['', 'nan', 'NaN', None]:
+                    continue
+                # Cek apakah ada huruf alfabet di kolom harga
+                if bool(re.search(r'[A-Za-z]', val)):
+                    error_positions.append((i, j, val))
+
+            if error_positions:
+                # Ambil error pertama (atau bisa juga dibuat daftar semua)
+                row_index = error_positions[0][0] + 1
+                col_name = data_harga.columns[error_positions[0][1]]
+                original_value = error_positions[0][2]
+
+                raise Exception(
+                    f"Sheet '{sheet_name}': Nilai pada kolom '{col_name}' di baris {row_index} "
+                    f"('{original_value}') mengandung huruf dan tidak valid sebagai angka. "
+                    f"Pastikan nilainya numerik saja (contoh: 10000 atau 10,000)."
+                )
+
             first_col_name = df.columns[0]
             if df[first_col_name].dtype != 'object':
                 try:
@@ -1035,7 +1079,7 @@ def validate_uploaded_data(df_sheets):
                     try:
                         col_str = col.strftime(DATE_FORMAT)
                     except Exception as e:
-                        raise Exception(f"Sheet '{sheet_name}': Kolom '{col}' tidak bisa diformat ke {DATE_FORMAT}. Detail: {e}")
+                        raise Exception(f"Sheet '{sheet_name}': Nama Kolom '{col}' tidak sesuai format **dd/mm/yyyy** (cth: 01/01/2020).")
                     new_cols.append(col)
 
                 elif isinstance(col, str):
@@ -1048,12 +1092,33 @@ def validate_uploaded_data(df_sheets):
                     new_cols.append(col_dt)
                 
             df.columns = [first_col_name] + new_cols
+            current_periods = sorted(pd.to_datetime(new_cols).tolist())
+
             month_periods = sorted(set(pd.to_datetime(new_cols).to_period('M')))
             if len(month_periods) < 3:
                 raise Exception(
                     f"Sheet '{sheet_name}': Data hanya memiliki {len(month_periods)} bulan ({[str(m) for m in month_periods]}). Minimal diperlukan 3 bulan data untuk analisis."
                 )      
 
+            # validasi periode antar sheets
+            if reference_periods is None:
+                reference_periods = current_periods
+                first_sheet_name = sheet_name
+            elif current_periods != reference_periods:
+                ref_set = set(reference_periods)
+                current_set = set(current_periods)
+
+                if ref_set != current_set:
+                    missing = ref_set - current_set
+                    extra = current_set - ref_set
+                    
+                    error_msg = f"Periode tanggal pada Sheet '{sheet_name}' tidak sama dengan Sheet '{first_sheet_name}'. "
+                    if missing:
+                        error_msg += f"Tanggal yang HILANG di '{sheet_name}': {sorted([d.strftime(DATE_FORMAT) for d in missing])}. "
+                    if extra:
+                        error_msg += f"Tanggal yang BERLEBIH di '{sheet_name}': {sorted([d.strftime(DATE_FORMAT) for d in extra])}."
+                    
+                    raise Exception(error_msg)
 
         return True, "Validasi berhasil!"
     except Exception as e:
@@ -1100,6 +1165,7 @@ def commodity_correlation(df):
 def create_report(df_result, df_month, sil, dbi, runtime, method_name, plot_functions):
     pdf = FPDF('P', 'mm', 'A4')
     pdf.set_auto_page_break(auto=True, margin=15)
+    MIN_HEIGHT_REQUIRED = 87
 
     plot_silhouette_graph = plot_functions['plot_silhouette_graph']
     plot_pca_scatter = plot_functions['plot_pca_scatter']
@@ -1163,10 +1229,12 @@ def create_report(df_result, df_month, sil, dbi, runtime, method_name, plot_func
             pdf.cell(90, 5, f'- {kab1}', 0, 0, 'L') 
             
             if kab2 == "":
+                pdf.ln(4)
                 break
             else:
                 pdf.cell(90, 5, f'- {kab2}', 0, 1, 'L')
 
+        pdf.ln(2)
 
     if noise_cluster:
         kab_list_noise = noise_cluster 
@@ -1190,13 +1258,16 @@ def create_report(df_result, df_month, sil, dbi, runtime, method_name, plot_func
             pdf.cell(90, 5, f'- {kab1}', 0, 0, 'L') 
             
             if kab2 == "":
+                pdf.ln(1)
                 break 
             else:
                 pdf.cell(90, 5, f'- {kab2}', 0, 1, 'L')
 
-    pdf.ln(7)
-    no += 1
+        pdf.ln(3)
+    else:
+        pdf.ln(2)
 
+    pdf.add_page()
     pdf.set_font('Arial', 'B', 12)
     pdf.cell(0, 7, f'{no}. Peta Sebaran Cluster', 0, 1, 'L') 
     
@@ -1204,19 +1275,14 @@ def create_report(df_result, df_month, sil, dbi, runtime, method_name, plot_func
     map_saved_successfully = show_cluster_map(df_result, temp_filename_map)
 
     if map_saved_successfully:
-        if pdf.get_y() + 100 > (pdf.h - pdf.b_margin): 
-             pdf.add_page()
-             
         pdf.image(temp_filename_map, x=15, y=pdf.get_y(), w=180, type='PNG') 
-        pdf.ln(100)
         os.unlink(temp_filename_map)
     else:
         pdf.set_font('Arial', 'I', 10)
         pdf.cell(0, 10, 'Peta tidak dapat dihasilkan karena data kurang atau gagal konversi ke gambar.', 0, 1, 'L')
-        pdf.ln(5) 
         
+    pdf.ln(115) 
     no += 1
-    pdf.add_page()
 
     X_features = df_result.drop(columns=["Kabupaten/Kota", "Cluster"], errors="ignore") 
     labels = df_result["Cluster"].values
@@ -1257,11 +1323,12 @@ def create_report(df_result, df_month, sil, dbi, runtime, method_name, plot_func
     pdf.image(buf_pca, x=95, y=plot_y, w=95, type='PNG')
     os.unlink(temp_filename_pca)
     no += 1
-    pdf.ln(70)
+    pdf.ln(80)
     
     # Matriks Korelasi
     fig_corr = commodity_correlation(df_result)
     if fig_corr is not None:
+        pdf.add_page()
         pdf.set_font('Arial', 'B', 12)
         pdf.cell(0, 7, f'{no}. Matriks Korelasi', 0, 1, 'L')
         buf_corr = io.BytesIO()
@@ -1272,10 +1339,11 @@ def create_report(df_result, df_month, sil, dbi, runtime, method_name, plot_func
             temp_filename_corr = tmp.name
 
         pdf.image(buf_corr, x=10, y=pdf.get_y(), w=120, type='PNG')
-        pdf.ln(100)
+        pdf.ln(110)
         os.unlink(temp_filename_corr)
         no += 1
-        
+            
+    if pdf.get_y() + MIN_HEIGHT_REQUIRED > (pdf.h - pdf.b_margin):
         pdf.add_page()
 
     # Visualisasi Harga per Komoditas
@@ -1315,7 +1383,6 @@ def create_report(df_result, df_month, sil, dbi, runtime, method_name, plot_func
     PLOT_WIDTH = 75
     MARGIN_LEFT = 10
     MARGIN_MID = MARGIN_LEFT + PLOT_WIDTH + 5
-    MIN_HEIGHT_REQUIRED = 110
 
     pdf.cell(0, 10, f'{no}. Analisis Harga Komoditas', 0, 1, 'L')
 
@@ -1391,16 +1458,15 @@ def create_report(df_result, df_month, sil, dbi, runtime, method_name, plot_func
             pdf.cell(PLOT_WIDTH, 5, 'Tidak dapat membuat Lineplot.', 0, 1, 'L')
             max_height = max(max_height, 10)    
 
-        pdf.set_y(start_y + max_height - 25)
+        pdf.set_y(start_y + max_height - 20)
 
     return bytes(pdf.output(dest='S'))
 
 
-def hash_dataframe(df):
-    # Pastikan data diurutkan agar hash konsisten meskipun urutan baris berubah
-    df_sorted = df.sort_values(by=list(df.columns)).reset_index(drop=True)
-    df_string = df_sorted.to_json() 
-    return hashlib.sha256(df_string.encode('utf-8')).hexdigest()
+# def hash_dataframe(df):
+#     df_sorted = df.sort_values(by=list(df.columns)).reset_index(drop=True)
+#     df_string = df_sorted.to_json() 
+#     return hashlib.sha256(df_string.encode('utf-8')).hexdigest()
 
 
 def standardized_columns(df):
@@ -1427,6 +1493,12 @@ def standardized_columns(df):
     return converted_df
 
 
+def reset_uploaded_data():
+    st.session_state.df = None
+    st.session_state.isDefault = False
+    # st.session_state.uploader_key += 1
+
+
 
 
 
@@ -1441,8 +1513,7 @@ def app():
     if "cluster_executed" not in st.session_state:
         st.session_state.cluster_executed = False
     if "current_method" not in st.session_state:
-        st.session_state.current_method = "K-Means" # Default
-    # Tambahkan variabel untuk menyimpan parameter dan data yang diproses final
+        st.session_state.current_method = "K-Means"
     if "final_df_input" not in st.session_state:
         st.session_state.final_df_input = None
     if "final_k" not in st.session_state:
@@ -1461,7 +1532,11 @@ def app():
         st.session_state.last_processed_keys = []
     if 'last_processed_years' not in st.session_state:
         st.session_state.last_processed_years = []        
-    
+    if 'show_uploader' not in st.session_state:
+        st.session_state.show_uploader = True
+    if 'uploader_key' not in st.session_state:
+        st.session_state.uploader_key   = 0
+
     st.title("📈 Dashboard Analisis Harga Pangan")
     st.write("---")
 
@@ -1471,7 +1546,7 @@ def app():
         2. Default dataset dan template dataset dapat diunduh pada tombol berikut.
         3. Dataset yang diinput merupakan data harian harga komoditas pangan.
         4. Format nominal harga pangan tanpa separator seperti '10000' dan '10500'.
-        5. Formmat kolom tanggal adalah 'dd/ MM/ yyyy'.
+        5. Formmat kolom tanggal adalah 'dd/MM/yyyy'.
         6. Jumlah komoditas ditentukan berdasarkan sheet yang ada dalam file yang di-upload.
         7. Penamaan sheet harus dalam huruf kecil dengan spasi ditandai oleh underscore seperti 'bawang_merah',
         8. Pastikan periode harian harga pangan untuk seluruh komoditas adalah sama.
@@ -1484,7 +1559,7 @@ def app():
     df = None
     uploaded_file = None
 
-    col_template, col_default, _ = st.columns([0.35, 0.3, 1.2]) 
+    col_template, col_default, _ = st.columns([0.35, 0.35, 1.2]) 
     try:
         with col_template:
             with open(TEMPLATE_FILE_PATH, "rb") as file:
@@ -1493,16 +1568,17 @@ def app():
                     data=file,
                     file_name="template_data_pangan.xlsx",
                     mime="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
-                    # help="Unduh file ini, isi datanya, lalu unggah di bawah."
                 ) 
 
         with col_default:
             if os.path.exists(READY_FILE_PATH):
-                if st.button("🚀 Default Dataset"):
-                    df_default = pd.read_excel(READY_FILE_PATH, sheet_name=None)
-                    st.session_state.df = df_default
-                    st.session_state.isDefault = True
-                    st.toast("✅ Dataset default berhasil dimuat!")
+                    if st.button("🚀 Default Dataset"):
+                        df_default = pd.read_excel(READY_FILE_PATH, sheet_name=None)
+                        st.session_state.uploader_key += 1
+
+                        st.session_state.df = df_default
+                        st.session_state.isDefault = True
+                        st.toast("✅ Dataset default berhasil dimuat!")
                 # else:
                 #     st.session_state.df = None
 
@@ -1511,16 +1587,16 @@ def app():
         traceback.print_exc()
         st.error(f"⚠️ Gagal memuat file!")
     
-    uploaded_file = st.file_uploader("Upload Excel file (.xlsx)", type=["xlsx"])
+    uploaded_file = st.file_uploader(
+        "Upload Excel file (.xlsx)", 
+        type=["xlsx"],
+        key=f"xlsx_uploader_key_{st.session_state.uploader_key}",
+        on_change=reset_uploaded_data,
+        accept_multiple_files=False
+        )
+    
     if uploaded_file is not None:
         df_uploaded = pd.read_excel(uploaded_file, sheet_name=None)
-        
-        for sheet_name, df in df_uploaded.items():
-            print(f"\nSheet: {sheet_name}")
-            # Pastikan untuk memanggil .dtypes pada DataFrame (df)
-            print(df.dtypes)
-        print("-----------------------------------")
-
         is_valid, validation_message = validate_uploaded_data(df_uploaded)
 
         if is_valid:
@@ -1532,22 +1608,25 @@ def app():
             st.session_state.df = None
 
     df = st.session_state.df
-
     if df is not None:
                 
         try:
             st.write("---")
+            # standarisasi semua kolom tanggal
             df = standardized_columns(df)
 
             sheet_names = list(df.keys())
             display_options = []
             name_map = {}
 
-            with st.spinner("Membabca dataset..."):
+            with st.spinner("Membaca dataset..."):
                 for name in sheet_names:
                     formatted_name = name.replace('_', ' ').upper()
                     display_options.append(formatted_name)
                     name_map[formatted_name] = name
+
+            first_sheet_name = list(df.keys())[0]
+            available_years = get_available_years(df[first_sheet_name])
 
             col_sheets, col_year = st.columns(2)
 
@@ -1556,11 +1635,12 @@ def app():
                 selected_display = []
                 lottie2_placeholder = st.empty()
 
+                # hanya satu komoditas gak usah pilih
                 if len(sheet_names) == 1:
                     selected_keys = sheet_names
                     selected_display = display_options
                     all_sheets = True
-                    display_lottie_bot(lottie2_placeholder, height=180, width=300, key="blink")
+                    display_lottie_bot(lottie2_placeholder, position="left", height=197, width=300, key="blink2")
                 
                 else:
                     st.markdown("")
@@ -1583,12 +1663,15 @@ def app():
                             st.info("Silakan pilih komoditas untuk memulai pemrosesan data.")
 
             with col_year:
-                first_sheet_name = list(df.keys())[0]
-                available_years = get_available_years(df[first_sheet_name])
+                # first_sheet_name = list(df.keys())[0]
+                # available_years = get_available_years(df[first_sheet_name])
+                lottie3_placeholder = st.empty()
 
+                # hanya satu periode tahun, gak usah pilih tahun
                 if len(available_years) == 1:
                     selected_year = available_years
                     all_year = True
+                    display_lottie_bot(lottie3_placeholder, position="right", height=197, width=300, key="blink1")
                 else: 
                     st.markdown("")
                     all_year = st.checkbox("SEMUA TAHUN", False)
@@ -1602,6 +1685,7 @@ def app():
                             key="year_select" 
                         )
                 
+                # validasi tahun yang dipilih harus berurutan
                 if len(selected_year) > 0 and not is_sequential_years(selected_year):
                     st.error("Tahun yang dipilih harus berurutan!")
                     st.session_state.run_processing = False 
@@ -1617,6 +1701,7 @@ def app():
                     st.session_state.merged_df = None
                     st.session_state.run_processing = True
 
+                # checking perubahan pada pilihan tahun dan komoditas: ada perubahan, perlu ulang proses data
                 current_keys_tuple = tuple(sorted(selected_keys))
                 current_years_tuple = tuple(sorted(selected_year))
 
@@ -1633,6 +1718,7 @@ def app():
 
                 if st.session_state.run_processing:
                     lottie2_placeholder.empty()
+                    lottie3_placeholder.empty()
                     multi_commodities = []
                     
                     with st.expander("DATA PREVIEW"):
@@ -1686,12 +1772,11 @@ def app():
                 if 'merged_df' in st.session_state and st.session_state.merged_df is not None:
 
                     df_input = st.session_state.merged_df
-                    current_df_hash = hash_dataframe(df_input)
 
+                    # checking perubahan pada data input komputasi
                     needs_recalculation = (
                         st.session_state.kmeans_preview is None or
-                        st.session_state.dbscan_preview is None or
-                        st.session_state.df_input_hash != current_df_hash
+                        st.session_state.dbscan_preview is None
                     )
 
                     with st.expander("CLUSTERING PREVIEW"):
@@ -1705,7 +1790,7 @@ def app():
 
                             st.session_state.kmeans_preview = result_kmeans
                             st.session_state.dbscan_preview = result_dbscan
-                            st.session_state.df_input_hash = current_df_hash
+                            # st.session_state.df_input_hash = current_df_hash
 
                         result_kmeans = st.session_state.kmeans_preview
                         result_dbscan = st.session_state.dbscan_preview
@@ -1723,7 +1808,7 @@ def app():
                         method = st.selectbox("Pilih Metode Clustering...", ["K-Means", "DBSCAN"])   
                     with col_param:
                         if method == "K-Means":
-                            k = st.number_input("Jumlah cluster (k)", min_value=2, max_value=10, value=default_k, step=1)
+                            k = st.number_input("Jumlah cluster", min_value=2, max_value=10, value=default_k, step=1)
                         elif method == "DBSCAN": 
                             eps = st.number_input("Epsilon", min_value=0.1, max_value=25.0, value=default_eps, step=0.01, format="%.2f")
                             minpts = st.number_input("MinPts", min_value=2, max_value=10, value=default_minpts, step=1)
@@ -1735,7 +1820,7 @@ def app():
                         display_loading_lottie(lottie_placeholder, height=500, width=500, key="clustering_loader")
 
                         if method == "K-Means":
-                            kmeans_df, model, sil, dbi, runtime = kmeans_clustering(df_input, k)
+                            kmeans_df, sil, dbi, runtime = kmeans_clustering(df_input, k)
                             st.session_state.cluster_result = (kmeans_df, sil, dbi, runtime)
 
                             st.session_state.current_method = method 
@@ -1745,7 +1830,7 @@ def app():
                             # st.session_state.final_minpts = None
 
                         elif method == "DBSCAN":
-                            dbscan_df, model, sil, dbi, runtime = dbscan_clustering(df_input, eps, minpts)
+                            dbscan_df, sil, dbi, runtime = dbscan_clustering(df_input, eps, minpts)
                             st.session_state.cluster_result = (dbscan_df, sil, dbi, runtime)
 
                             st.session_state.current_method = method 
@@ -1761,7 +1846,7 @@ def app():
                     cluster_df_result = None
                     if st.session_state.get('cluster_executed') and st.session_state.cluster_result is not None:
                         cluster_df_result, sil, dbi, runtime = st.session_state.cluster_result
-                        df_input_rerun = st.session_state.final_df_input 
+                        # df_input_rerun = st.session_state.final_df_input 
                         current_method = st.session_state.current_method
 
                         if method == "K-Means":
@@ -1787,6 +1872,6 @@ def app():
 
     else:
         traceback.print_exc()
-        st.error("Upload file untuk memmulai proses!")
+        st.error("Upload file untuk memulai proses!")
 
 

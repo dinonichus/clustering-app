@@ -157,7 +157,7 @@ def app():
 
     st.write("---")
     st.write("#### Sumber Data")
-    st.write("Dataset harga komoditas pangan diperoleh dari situs resmi [Pusat Inforasi Harga Pangan Strategis Nasional](https://www.bi.go.id/hargapangan/TabelHarga/) yang dikelola oleh Bank Indonesia.")
+    st.write("Dataset harga komoditas pangan diperoleh dari situs resmi [Pusat Inforasi Harga Pangan Strategis Nasional](https://www.bi.go.id/hargapangan/) yang dikelola oleh Bank Indonesia.")
 
     st.write("")
     st.write("#### Metode Clustering")
@@ -165,3 +165,28 @@ def app():
     Terdapat dua metode clustering yang digunakan, yaitu:
     1. K-Means: Pengemlompokan data dilakukan berdasarkan jarak terdekat terhadap titik pusatnya melalui penentuan jumlah cluster. Data yang saling berdekatan dengan suatu titik pusat akan digolongkan menjadi satu kelopok.
     2. DBSCAN (Density Based Spacial Clustering of Application with Noise): Pengelompokan data berdasarkan kepadatan atau kerapatan jarak antar data. Data-data yang saling berdekatan dan saling bertetangga akan digolongkan menjadi satu kelompok melalui penentuan nilai batas jarak maksimum (epsilon) dan jumlah minimum tetangga (minPts).""")
+
+    st.write("---")
+    st.write("#### 📢 Contact Us")
+    st.write("**Gabriella Ignatia**")
+
+    col_1, col_2 = st.columns(2)
+
+    with col_1:
+        colA_, col_, colB_ = st.columns([0.08, 0.001, 0.5])
+        with colA_:
+            st.write("E-mail:")
+            st.write("Github:")
+            st.write("LinkedIn:")
+
+        with colB_:
+            st.write("gaby.ignatia@gmail.con")
+            st.write("[dinonichus](https://github.com/dinonichus)")
+            st.write("[Gabriella Ignatia](https://www.linkedin.com/in/gabriella-ignatia-1ba897333/)")
+
+    st.write("---")
+    st.write("Teknik Informatika, [Fakultas Teknologi Informasi](https://fti.untar.ac.id/)")
+    st.write("Universitas Traumanagara")
+    st.write("""Jln Letjen S. Parman No. 1, Grogol Petamburan
+                Jakarta Barat, 11440
+                Gedung R, Lt. 11, Kampus I""")

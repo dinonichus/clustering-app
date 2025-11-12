@@ -16,17 +16,6 @@ def app():
             untuk menganalisis pola harga pangan.<br><br>
         </div>
         """, unsafe_allow_html=True)
-    
-    # DASHBOARD_PAGE = "pages/Dashboard.py"
-    # ABOUT_PAGE = "pages/About.py"
-
-    # spacer1, col_dashb, col_about, spacer2 = st.columns([1, 0.2, 0.2, 1])
-    # with col_dashb:
-    #     if st.button("Clustering"):
-    #         st.switch_page(DASHBOARD_PAGE)
-    # with col_about:        
-    #     if st.button("About"):
-    #         st.switch_page(ABOUT_PAGE)
 
     lottie_placeholder = st.empty()
     display_lottie_home(lottie_placeholder, height=220, width=500, key="home")
